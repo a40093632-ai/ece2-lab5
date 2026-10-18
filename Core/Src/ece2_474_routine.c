@@ -59,7 +59,14 @@ void polling_routine(void)
  */
 static void button_isr_p7(void)
 {
-    /* 실습 코드 작성: 버튼 이벤트를 기록하거나 LED 상태를 변경합니다. */
+    static uint32_t last_ms = 0;
+    uint32_t now_ms = HAL_GetTick();
+
+    if (now_ms - last_ms >= 200U)
+    {
+        last_ms = now_ms;
+        HAL_GPIO_TogglePin(LED_ece2_GPIO_Port, LED_ece2_Pin);
+    }
 }
 
 /* 2. TIM6를 인터럽트 방식으로 시작하면 100 ms마다 호출됩니다. 우선순위: 4.
