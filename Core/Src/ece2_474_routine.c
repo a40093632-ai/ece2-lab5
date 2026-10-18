@@ -7,8 +7,7 @@
  */
 #include "ece2_474.h"
 #include "main.h"
-static volatile uint32_t interval_ticks = 10U;
-static volatile uint32_t elapsed_ticks = 0U;
+static volatile uint32_t duty_percent = 25U;
 /* 주변장치 변수의 extern 선언은 ece2_474.h에 있습니다. */
 
 /* UART 인터럽트 수신 실습 때 필요한 버퍼의 주석을 해제합니다.
@@ -26,13 +25,13 @@ void ece2_474_init(void)
      */
 
     /* TIM6: 100 ms마다 tim6_isr_p4()를 호출합니다. */
-    __HAL_TIM_SET_COUNTER(&htim6, 0U);
-    __HAL_TIM_CLEAR_FLAG(&htim6, TIM_FLAG_UPDATE);
-    HAL_TIM_Base_Start_IT(&htim6);
+    // __HAL_TIM_SET_COUNTER(&htim6, 0U);
+    // __HAL_TIM_CLEAR_FLAG(&htim6, TIM_FLAG_UPDATE);
+    // HAL_TIM_Base_Start_IT(&htim6);
 
     /* TIM3: PB4에서 1 kHz PWM을 출력합니다. 비교값 500은 50%입니다. */
-    // HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-    // __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500U);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, duty_percent * 10U);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 
     /* UART2: PC에서 한 바이트를 받으면 uart2_isr_p6()를 호출합니다.
      * 위의 uart2_rx_ece2 버퍼도 주석을 해제해야 합니다.
@@ -72,17 +71,10 @@ static void button_isr_p7(void)
     }
     last_ms = now_ms;
 
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
+    duty_percent = (duty_percent >= 75U)
+                 ? 25U : duty_percent + 25U;
 
-    interval_ticks = (interval_ticks >= 80U)
-                   ? 10U : interval_ticks * 2U;
-
-    elapsed_ticks = 0U;
-    __HAL_TIM_SET_COUNTER(&htim6, 0U);
-    __HAL_TIM_CLEAR_FLAG(&htim6, TIM_FLAG_UPDATE);
-
-    __set_PRIMASK(primask);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, duty_percent * 10U);
 }
 
 /* 2. TIM6를 인터럽트 방식으로 시작하면 100 ms마다 호출됩니다. 우선순위: 4.
@@ -90,11 +82,7 @@ static void button_isr_p7(void)
  */
 static void tim6_isr_p4(void)
 {
-    if (++elapsed_ticks >= interval_ticks)
-    {
-        elapsed_ticks = 0U;
-        HAL_GPIO_TogglePin(LED_ece2_GPIO_Port, LED_ece2_Pin);
-    }
+    
 }
 
 /* 3. PC 통신 UART2의 요청한 수신이 완료되면 호출됩니다. 우선순위: 6.
