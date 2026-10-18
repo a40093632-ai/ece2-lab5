@@ -24,11 +24,11 @@ void ece2_474_init(void)
      */
 
     /* TIM6: 100 ms마다 tim6_isr_p4()를 호출합니다. */
-    HAL_TIM_Base_Start_IT(&htim6);
+    // HAL_TIM_Base_Start_IT(&htim6);
 
     /* TIM3: PB4에서 1 kHz PWM을 출력합니다. 비교값 500은 50%입니다. */
-    // HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-    // __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500U);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500U);
 
     /* UART2: PC에서 한 바이트를 받으면 uart2_isr_p6()를 호출합니다.
      * 위의 uart2_rx_ece2 버퍼도 주석을 해제해야 합니다.
@@ -67,13 +67,7 @@ static void button_isr_p7(void)
  */
 static void tim6_isr_p4(void)
 {
-    static uint32_t count = 0;
-
-    if (++count >= 10U)
-    {
-        count = 0;
-        HAL_GPIO_TogglePin(LED_ece2_GPIO_Port, LED_ece2_Pin);
-    }
+    
 }
 
 /* 3. PC 통신 UART2의 요청한 수신이 완료되면 호출됩니다. 우선순위: 6.
