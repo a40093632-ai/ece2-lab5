@@ -42,6 +42,12 @@
 | 신호등 | tb | traffic |
 | ADC | tb | adc |
 
+## 실험 전 보고서
+
+- [LAB5 실험 전 보고서 PDF](reports/pre/LAB5_실험전보고서_2023440129_조성현.pdf)
+- [소스·증빙 기준 태그: lab5-pre-v1](https://github.com/a40093632-ai/ece2-lab5/tree/lab5-pre-v1)
+
+
 ---
 
 # STM32 기초 실습
