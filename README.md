@@ -1,3 +1,49 @@
+# LAB5 — 인터럽트·타이머·PWM 및 FPGA 실습
+
+- 과목: 전자전기컴퓨터설계실험Ⅱ
+- 학번 / 이름: 2023440129 / 조성현
+- STM32: NUCLEO-G474RE
+- FPGA: Combo II-DLD S75 / xc7s75fgga484-1
+
+## 실험 내용 및 검증 결과
+
+| 구분 | 내용 | 검증 결과 |
+|---|---|---|
+| STM32 예제 | 버튼 인터럽트, TIM6 주기 타이머, PWM 출력 | 각 예제 빌드 성공 |
+| STM32 과제3 | 버튼으로 LED 토글 간격 1→2→4→8→1초 변경 | 빌드 성공 |
+| STM32 과제4 | PB4에서 1kHz PWM, 듀티비 25→50→75→25% 변경 | 빌드 성공 |
+| FPGA 실습1 | 피아노 음 선택 및 구형파 생성 | 시뮬레이션 PASS |
+| FPGA 실습2 | 신호등 방향 순환·보행자 점멸·비상 점멸 | 시뮬레이션 PASS |
+| FPGA 실습3 | ADC 16비트 직렬 송수신 및 수신값 표시 | 시뮬레이션 PASS |
+
+검증 범위: STM32 컴파일·링크 및 FPGA 테스트벤치 시뮬레이션.
+
+## 소스 및 실험 자료
+
+| 항목 | 소스 | 증빙 |
+|---|---|---|
+| STM32 | 아래 과제별 커밋 참조 | [빌드·핵심 코드](evidence/stm32/) |
+| 피아노 | [RTL·테스트벤치·XDC·VCD](fpga/piano/) | [PASS·파형·핵심 코드](evidence/fpga/piano/) |
+| 신호등 | [RTL·테스트벤치·XDC·VCD](fpga/traffic/) | [PASS·파형·핵심 코드](evidence/fpga/traffic/) |
+| ADC | [RTL·테스트벤치·XDC·VCD](fpga/adc/) | [PASS·파형·핵심 코드](evidence/fpga/adc/) |
+
+## STM32 과제별 소스
+
+현재 작업 파일은 과제4 상태이며, 과제별 코드는 다음 커밋에 보존되어 있다.
+
+- [과제3](https://github.com/a40093632-ai/ece2-lab5/commit/481f917573433a88efc65374a57314d65d31a0ce)
+- [과제4](https://github.com/a40093632-ai/ece2-lab5/commit/c7c14099ff50b3c04382457dbfb53652bb12afb5)
+
+## FPGA 최상위 모듈
+
+| 실습 | 시뮬레이션 | 보드 구현 |
+|---|---|---|
+| 피아노 | tb | piano |
+| 신호등 | tb | traffic |
+| ADC | tb | adc |
+
+---
+
 # STM32 기초 실습
 
 **실습 보드: NUCLEO-G474RE**
