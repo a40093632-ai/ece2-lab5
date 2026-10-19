@@ -10,13 +10,13 @@
 | 구분 | 내용 | 검증 결과 |
 |---|---|---|
 | STM32 예제 | 버튼 인터럽트, TIM6 주기 타이머, PWM 출력 | 각 예제 빌드 성공 |
-| STM32 과제3 | 버튼으로 LED 토글 간격 1→2→4→8→1초 변경 | 빌드 성공 |
-| STM32 과제4 | PB4에서 1kHz PWM, 듀티비 25→50→75→25% 변경 | 빌드 성공 |
-| FPGA 실습1 | 피아노 음 선택 및 구형파 생성 | 시뮬레이션 PASS |
-| FPGA 실습2 | 신호등 방향 순환·보행자 점멸·비상 점멸 | 시뮬레이션 PASS |
-| FPGA 실습3 | ADC 16비트 직렬 송수신 및 수신값 표시 | 시뮬레이션 PASS |
+| STM32 과제3 | 버튼으로 LED 토글 간격 1→2→4→8→1초 변경 | 빌드 및 보드 시연 완료 |
+| STM32 과제4 | PB4에서 1kHz PWM, 듀티비 25→50→75→25% 변경 | 빌드 및 보드 시연 완료 |
+| FPGA 실습1 | 피아노 음 선택 및 구형파 생성 | 시뮬레이션 및 보드 시연 완료 |
+| FPGA 실습2 | 신호등 방향 순환·보행자 점멸·비상 점멸 | 시뮬레이션 및 보드 시연 완료 |
+| FPGA 실습3 | ADC 16비트 직렬 송수신 및 수신값 표시 | 시뮬레이션 및 보드 시연 완료 |
 
-검증 범위: STM32 컴파일·링크 및 FPGA 테스트벤치 시뮬레이션.
+검증 범위: STM32 빌드·보드 시연, FPGA 시뮬레이션·Vivado 구현·보드 시연.
 
 ## 소스 및 실험 자료
 
@@ -26,6 +26,18 @@
 | 피아노 | [RTL·테스트벤치·XDC·VCD](fpga/piano/) | [PASS·파형·핵심 코드](evidence/fpga/piano/) |
 | 신호등 | [RTL·테스트벤치·XDC·VCD](fpga/traffic/) | [PASS·파형·핵심 코드](evidence/fpga/traffic/) |
 | ADC | [RTL·테스트벤치·XDC·VCD](fpga/adc/) | [PASS·파형·핵심 코드](evidence/fpga/adc/) |
+
+## 실험 후 결과 자료
+
+| 항목 | 시연 사진 | 시연 영상 | 추가 자료 |
+|---|---|---|---|
+| STM32 과제3 | [사진](evidence/stm32/assignment3/과제3%20시연사진.png) | [영상](evidence/stm32/assignment3/과제3%20시연영상.mp4) | [빌드·핵심 코드](evidence/stm32/assignment3/) |
+| STM32 과제4 | [사진](evidence/stm32/assignment4/과제4%20시연사진.png) | [영상](evidence/stm32/assignment4/과제4%20시연영상.mp4) | [빌드·핵심 코드](evidence/stm32/assignment4/) |
+| FPGA 실습1 · 피아노 | [사진](evidence/fpga/piano/vivado/실습1%20시연사진.png) | [영상](evidence/fpga/piano/vivado/실습1%20시연영상.mp4) | [Vivado 결과](evidence/fpga/piano/vivado/) · [비트스트림](artifacts/bit/lab5_piano.bit) |
+| FPGA 실습2 · 신호등 | [사진](evidence/fpga/traffic/vivado/실습2%20시연사진.png) | [영상](evidence/fpga/traffic/vivado/실습2%20시연영상.mp4) | [Vivado 결과](evidence/fpga/traffic/vivado/) · [비트스트림](artifacts/bit/lab5_traffic.bit) |
+| FPGA 실습3 · ADC | [사진](evidence/fpga/adc/vivado/실습3%20시연사진.png) | [영상](evidence/fpga/adc/vivado/실습3%20시연영상.mp4) | [Vivado 결과](evidence/fpga/adc/vivado/) · [비트스트림](artifacts/bit/lab5_adc.bit) |
+
+- [실험 결과 기준 태그: lab5-post-v1](https://github.com/a40093632-ai/ece2-lab5/tree/lab5-post-v1)
 
 ## STM32 과제별 소스
 
@@ -49,6 +61,7 @@
 
 
 ---
+
 
 # STM32 기초 실습
 
