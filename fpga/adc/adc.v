@@ -13,7 +13,7 @@ module adc #(parameter HALF_CYCLES=25)(
     wire busy,done;
     reg start;
 
-    adc_command u_command(add_sel,command);
+    adc_command u_command(add_sel ^ 3'b001,command);
 
     serial_frame16 #(.HALF_CYCLES(HALF_CYCLES)) u_serial(
         clk_50mhz,rst_p,start,command,adc_dout,
